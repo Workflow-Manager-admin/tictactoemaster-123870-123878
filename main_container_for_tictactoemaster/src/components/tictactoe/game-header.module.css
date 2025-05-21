@@ -1,0 +1,61 @@
+.gameHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.master {
+  color: var(--qwik-light-blue);
+}
+
+.gameStatus {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.turnIndicator, .winIndicator, .drawIndicator {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.turnIndicator {
+  background-color: rgba(24, 182, 246, 0.1);
+}
+
+.winIndicator {
+  background-color: rgba(113, 63, 194, 0.3);
+}
+
+.drawIndicator {
+  background-color: rgba(200, 200, 200, 0.2);
+}
+
+.playerMark {
+  font-weight: bold;
+  color: var(--qwik-light-blue);
+  font-size: 1.4rem;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 3rem;
+  }
+  
+  .gameStatus {
+    font-size: 1.4rem;
+  }
+  
+  .playerMark {
+    font-size: 1.6rem;
+  }
+}
