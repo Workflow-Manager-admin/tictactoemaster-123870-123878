@@ -25,41 +25,8 @@ export default component$(() => {
     draws: 0
   });
   
-  // Handle cell click
-  const handleCellClick = $((index: number) => {
-    // Ignore clicks if cell is already filled or game is over
-    if (board[index] !== '' || gameStatus.value !== 'playing') {
-      return;
-    }
-    
-    // Update the board with current player's mark
-    board[index] = currentPlayer.value;
-    
-    // Check for winner
-    if (checkWinner()) {
-      gameStatus.value = 'won';
-      // Increment score for the winner
-      if (currentPlayer.value === 'X') {
-        scores.X++;
-      } else {
-        scores.O++;
-      }
-      return;
-    }
-    
-    // Check for draw
-    if (board.every(cell => cell !== '')) {
-      gameStatus.value = 'draw';
-      scores.draws++;
-      return;
-    }
-    
-    // Switch to the other player
-    currentPlayer.value = currentPlayer.value === 'X' ? 'O' : 'X';
-  });
-  
-  // Check for a winner
-  const checkWinner = $(() => {
+  // Check if there is a winner with the current board state
+  const hasWinner = () => {
     // Winning patterns (rows, columns, diagonals)
     const winPatterns = [
       [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
@@ -80,6 +47,39 @@ export default component$(() => {
     }
     
     return false;
+  };
+  
+  // Handle cell click
+  const handleCellClick = $((index: number) => {
+    // Ignore clicks if cell is already filled or game is over
+    if (board[index] !== '' || gameStatus.value !== 'playing') {
+      return;
+    }
+    
+    // Update the board with current player's mark
+    board[index] = currentPlayer.value;
+    
+    // Check for winner
+    if (hasWinner()) {
+      gameStatus.value = 'won';
+      // Increment score for the winner
+      if (currentPlayer.value === 'X') {
+        scores.X++;
+      } else {
+        scores.O++;
+      }
+      return;
+    }
+    
+    // Check for draw
+    if (board.every(cell => cell !== '')) {
+      gameStatus.value = 'draw';
+      scores.draws++;
+      return;
+    }
+    
+    // Switch to the other player
+    currentPlayer.value = currentPlayer.value === 'X' ? 'O' : 'X';
   });
   
   // Start a new game
