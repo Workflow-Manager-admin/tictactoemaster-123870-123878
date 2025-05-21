@@ -1,0 +1,47 @@
+.gameBoard {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.boardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 1/1;
+}
+
+.cell {
+  background-color: rgba(24, 182, 246, 0.1);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cell:hover {
+  background-color: rgba(24, 182, 246, 0.2);
+}
+
+.cellContent {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+}
+
+@media screen and (min-width: 768px) {
+  .cellContent {
+    font-size: 3rem;
+  }
+  
+  .boardGrid {
+    gap: 15px;
+    max-width: 400px;
+  }
+}
