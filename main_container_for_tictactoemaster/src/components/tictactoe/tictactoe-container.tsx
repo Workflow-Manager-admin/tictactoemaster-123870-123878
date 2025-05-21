@@ -67,15 +67,19 @@ export default component$(() => {
       [0, 4, 8], [2, 4, 6]            // diagonals
     ];
     
-    // Check if any winning pattern matches
-    return winPatterns.some(pattern => {
+    // Check each winning pattern
+    for (const pattern of winPatterns) {
       const [a, b, c] = pattern;
-      return (
+      if (
         board[a] !== '' && 
         board[a] === board[b] && 
         board[a] === board[c]
-      );
-    });
+      ) {
+        return true;
+      }
+    }
+    
+    return false;
   });
   
   // Start a new game
