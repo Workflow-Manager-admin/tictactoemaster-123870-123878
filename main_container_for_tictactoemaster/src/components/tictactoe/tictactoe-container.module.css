@@ -1,0 +1,40 @@
+.tictactoeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background-color: var(--qwik-dark-background);
+}
+
+.gameWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  width: 100%;
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 15px;
+  background-color: var(--qwik-dirty-black);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+  .tictactoeContainer {
+    padding: 3rem;
+  }
+  
+  .gameWrapper {
+    padding: 3rem;
+  }
+}
