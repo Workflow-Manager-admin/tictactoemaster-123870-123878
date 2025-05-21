@@ -1,4 +1,4 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, PropFunction, $ } from "@builder.io/qwik";
 import styles from "./game-board.module.css";
 
 /**
@@ -14,7 +14,7 @@ export default component$(({
   onCellClick 
 }: { 
   board: string[]; 
-  onCellClick: (index: number) => void; 
+  onCellClick: PropFunction<(index: number) => void>; 
 }) => {
   return (
     <div class={styles.gameBoard}>
@@ -23,7 +23,7 @@ export default component$(({
           <div 
             key={index} 
             class={styles.cell}
-            onClick$={() => onCellClick(index)}
+            onClick$={$(() => onCellClick(index))}
           >
             {cell && <span class={styles.cellContent}>{cell}</span>}
           </div>
