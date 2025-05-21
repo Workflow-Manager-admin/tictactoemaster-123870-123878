@@ -25,8 +25,20 @@ export default component$(() => {
     draws: 0
   });
   
-  // Check if there is a winner with the current board state
-  const hasWinner = () => {
+  // Handle cell click
+  const handleCellClick = $((index: number) => {
+    // Ignore clicks if cell is already filled or game is over
+    if (board[index] !== '' || gameStatus.value !== 'playing') {
+      return;
+    }
+    
+    // Update the board with current player's mark
+    board[index] = currentPlayer.value;
+    
+    // Check for winner
+    // We need to include this logic directly here to avoid scoping issues
+    let hasWon = false;
+    
     // Winning patterns (rows, columns, diagonals)
     const winPatterns = [
       [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
@@ -42,25 +54,12 @@ export default component$(() => {
         board[a] === board[b] && 
         board[a] === board[c]
       ) {
-        return true;
+        hasWon = true;
+        break;
       }
     }
     
-    return false;
-  };
-  
-  // Handle cell click
-  const handleCellClick = $((index: number) => {
-    // Ignore clicks if cell is already filled or game is over
-    if (board[index] !== '' || gameStatus.value !== 'playing') {
-      return;
-    }
-    
-    // Update the board with current player's mark
-    board[index] = currentPlayer.value;
-    
-    // Check for winner
-    if (hasWinner()) {
+    if (hasWon) {
       gameStatus.value = 'won';
       // Increment score for the winner
       if (currentPlayer.value === 'X') {
